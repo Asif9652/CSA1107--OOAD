@@ -1,0 +1,28 @@
+
+@startuml
+title Passport Automation System - Package Diagram
+top to bottom direction
+
+package "User Interface Layer" as UI {
+  class ApplicantLogin
+  class ApplicationForm
+  class ApplicationStatusPage
+}
+
+package "Domain Layer" as Domain {
+  class Applicant
+  class PassportApplication
+  class Verification
+  class Passport
+}
+
+package "Technical Services Layer" as Technical {
+  class AuthenticationService
+  class DatabaseService
+  class DocumentStorageService
+}
+
+UI ..> Domain : Uses
+Domain ..> Technical : Uses
+
+@enduml
