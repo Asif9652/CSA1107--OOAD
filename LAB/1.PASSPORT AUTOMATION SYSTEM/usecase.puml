@@ -1,0 +1,25 @@
+
+@startuml
+title Passport Automation System - Use Case Diagram
+left to right direction
+
+actor Applicant
+actor "Enquiry Officer" as Officer
+
+rectangle "Passport Management System" {
+  usecase "Applicant Details" as UC1
+  usecase "Applicant Proof" as UC2
+  usecase "Verification of Proof" as UC3
+  usecase "Issue of Passport" as UC4
+  usecase "Cancellation of Passport" as UC5
+}
+
+Applicant -- UC1
+Applicant -- UC2
+Applicant -- UC4
+
+Officer -- UC1
+Officer -- UC3
+Officer -- UC4
+Officer -- UC5
+@enduml
