@@ -1,0 +1,24 @@
+
+@startuml
+title Passport Automation System - Component Diagram
+left to right direction
+skinparam componentStyle uml2
+
+actor Applicant
+
+component "Applicant Interface" as UI
+component "Passport Management Module" as PMS
+component "Verification Module" as VM
+component "Passport Issuance Module" as IM
+database "Passport Database" as DB
+
+Applicant --> UI : Uses
+UI --> PMS : Submit application
+PMS --> VM : Verify details and proofs
+VM --> DB : Read applicant records
+VM --> PMS : Verification result
+PMS --> IM : Approved application
+IM --> DB : Save passport details
+PMS --> DB : Store application and status
+
+@enduml
