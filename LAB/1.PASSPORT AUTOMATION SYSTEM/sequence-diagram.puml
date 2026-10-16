@@ -1,0 +1,25 @@
+@startuml
+title Passport Automation System - Sequence Diagram
+
+actor Applicant
+participant "Passport Management System" as PMS
+participant "Enquiry Officer" as Officer
+database "Passport Database" as DB
+
+Applicant -> PMS : Submit applicant details
+PMS -> Applicant : Request supporting proofs
+Applicant -> PMS : Submit proofs
+PMS -> DB : Store applicant details and proofs
+DB --> PMS : Confirm storage
+PMS -> Officer : Request verification
+Officer -> PMS : Return verification result
+
+alt Details and proofs are valid
+    PMS -> DB : Update status to Approved
+    DB --> PMS : Confirm approval
+    PMS -> Applicant : Notify passport issuance
+else Details or proofs are invalid
+    PMS -> Applicant : Request correction or reject application
+end
+
+@enduml
