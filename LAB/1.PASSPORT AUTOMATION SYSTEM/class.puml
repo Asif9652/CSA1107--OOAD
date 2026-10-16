@@ -1,0 +1,35 @@
+
+@startuml
+title Passport Automation System - Class Diagram
+skinparam classAttributeIconSize 0
+
+class Applicant {
+  - applicantId: int
+  - firstName: String
+  - lastName: String
+  - details: String
+  - proof: String
+  + applyPassport(): void
+  + submitProof(): void
+}
+
+class "Enquiry Officer" as EnquiryOfficer {
+  - officerId: int
+  - form: String
+  + verifyProof(): boolean
+  + checkDetails(): boolean
+}
+
+class "Passport Management System" as PassportManagementSystem {
+  - applicationId: int
+  - status: String
+  + verifyDetails(): boolean
+  + storeProof(): void
+  + issuePassport(): void
+  + cancelPassport(): void
+}
+
+Applicant "1" --> "1" PassportManagementSystem : submits application
+PassportManagementSystem --> EnquiryOfficer : requests verification
+EnquiryOfficer --> PassportManagementSystem : returns result
+@enduml
