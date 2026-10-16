@@ -1,0 +1,32 @@
+
+@startuml
+title Passport Automation System - Statechart Diagram
+
+[*] --> ApplicationStarted
+
+state ApplicationStarted
+state DetailsSubmitted
+state UnderVerification
+state CorrectionRequired
+state Approved
+state PassportIssued
+state Rejected
+state Cancelled
+
+ApplicationStarted --> DetailsSubmitted : Submit application
+DetailsSubmitted --> UnderVerification : Submit proofs
+
+UnderVerification --> Approved : Details and proofs valid
+UnderVerification --> CorrectionRequired : Missing or incorrect details
+UnderVerification --> Rejected : Verification failed
+
+CorrectionRequired --> DetailsSubmitted : Correct and resubmit
+Approved --> PassportIssued : Issue passport
+
+PassportIssued --> Cancelled : Authorized cancellation
+
+Rejected --> [*]
+Cancelled --> [*]
+PassportIssued --> [*]
+
+@enduml
