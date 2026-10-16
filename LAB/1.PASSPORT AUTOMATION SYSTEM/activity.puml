@@ -1,0 +1,36 @@
+
+@startuml
+title Passport Automation System - Activity Diagram
+
+start
+
+:Enter applicant details;
+:Submit application proofs;
+:Store applicant details and proofs;
+:Verify details and proofs;
+
+if (Are details and proofs correct?) then (Yes)
+  :Approve application;
+  :Issue passport;
+  :Notify applicant;
+  stop
+else (No)
+  :Request correction or reject application;
+  if (Can applicant correct details?) then (Yes)
+    :Correct details and resubmit proofs;
+    :Verify details and proofs again;
+    if (Verification successful?) then (Yes)
+      :Approve application;
+      :Issue passport;
+      :Notify applicant;
+      stop
+    else (No)
+      :Reject application;
+      stop
+    endif
+  else (No)
+    :Reject application;
+    stop
+  endif
+endif
+@enduml
