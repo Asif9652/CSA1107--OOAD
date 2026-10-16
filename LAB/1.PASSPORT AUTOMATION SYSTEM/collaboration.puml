@@ -1,0 +1,22 @@
+
+@startuml
+title Passport Automation System - Collaboration Diagram
+left to right direction
+
+object "applicant: Applicant" as Applicant
+object "system: Passport Management System" as PMS
+object "officer: Enquiry Officer" as Officer
+object "db: Passport Database" as DB
+
+Applicant --> PMS : 1: submitDetails()
+PMS --> Applicant : 2: requestProofs()
+Applicant --> PMS : 3: submitProofs()
+PMS --> DB : 4: storeApplication()
+DB --> PMS : 5: confirmStorage()
+PMS --> Officer : 6: verifyProof()
+Officer --> PMS : 7: verificationResult()
+PMS --> DB : 8: updateStatus()
+DB --> PMS : 9: confirmStatus()
+PMS --> Applicant : 10: notifyResult()
+
+@enduml
