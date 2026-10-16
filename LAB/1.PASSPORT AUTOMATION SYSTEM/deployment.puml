@@ -1,0 +1,25 @@
+
+@startuml
+title Passport Automation System - Deployment Diagram
+
+node "Applicant Computer" as Client {
+  artifact "Applicant Interface" as UI
+}
+
+node "Passport Application Server" as Server {
+  artifact "Passport Management System" as PMS
+  artifact "Verification Module" as VM
+  artifact "Passport Issuance Module" as IM
+}
+
+database "Database Server" as DBServer {
+  artifact "Passport Database" as DB
+}
+
+Client --> Server : HTTPS
+PMS --> VM : Verification request
+VM --> DBServer : Database queries
+PMS --> DBServer : Application updates
+IM --> DBServer : Passport records
+
+@enduml
