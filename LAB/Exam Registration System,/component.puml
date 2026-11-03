@@ -1,0 +1,31 @@
+
+@startuml
+
+package "Exam Registration System" {
+
+  component "Student Interface" as UI
+  component "Authentication Module" as Auth
+  component "Exam Management Module" as Exam
+  component "Registration Module" as Reg
+  component "Payment Module" as Pay
+  component "Hall Ticket Module" as Ticket
+
+  database "Exam Database" as DB
+  component "External Payment Gateway" as Gateway
+
+  UI --> Auth
+  UI --> Exam
+  UI --> Reg
+
+  Reg --> Exam
+  Reg --> Pay
+  Reg --> DB
+
+  Pay --> Gateway
+  Pay --> DB
+
+  Ticket --> Reg
+  Ticket --> DB
+}
+
+@enduml
