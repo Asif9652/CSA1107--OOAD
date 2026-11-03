@@ -1,0 +1,26 @@
+
+@startuml
+title Book Bank Registration System - Collaboration Diagram
+left to right direction
+
+object "student: Student" as Student
+object "system: Book Bank Registration System" as BRS
+object "admin: Book Bank Administrator" as Admin
+object "db: Book Database" as DB
+
+Student --> BRS : 1: registerStudent()
+BRS --> Admin : 2: verifyStudent()
+Admin --> BRS : 3: verificationResult()
+BRS --> DB : 4: storeStudentDetails()
+DB --> BRS : 5: registrationConfirmation()
+
+Student --> BRS : 6: requestBook()
+BRS --> DB : 7: checkAvailability()
+DB --> BRS : 8: availabilityResult()
+BRS --> Admin : 9: approveBookRequest()
+Admin --> BRS : 10: approvalResult()
+BRS --> DB : 11: updateBookStock()
+DB --> BRS : 12: stockUpdated()
+BRS --> Student : 13: issueBookNotification()
+
+@enduml
