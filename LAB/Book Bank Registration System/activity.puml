@@ -1,0 +1,44 @@
+
+@startuml
+title Book Bank Registration System - Activity Diagram
+
+start
+
+:Enter student details;
+:Submit registration;
+:Verify student details;
+
+if (Student details valid?) then (Yes)
+  :Register student;
+  :Select book;
+  :Submit book request;
+  :Check book availability;
+
+  if (Book available?) then (Yes)
+    :Verify student eligibility;
+
+    if (Student eligible?) then (Yes)
+      :Approve book request;
+      :Issue book;
+      :Update book stock;
+      :Record issue details;
+      :Notify student;
+      stop
+    else (No)
+      :Reject book request;
+      :Notify student;
+      stop
+    endif
+
+  else (No)
+    :Notify book unavailable;
+    :Reject or wait for request;
+    stop
+  endif
+
+else (No)
+  :Request correction;
+  stop
+endif
+
+@enduml
