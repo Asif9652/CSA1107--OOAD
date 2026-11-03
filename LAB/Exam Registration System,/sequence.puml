@@ -1,0 +1,45 @@
+
+@startuml
+
+actor Student
+participant "Exam Registration System" as System
+database "Exam Database" as DB
+participant "Payment Gateway" as Payment
+
+Student -> System : Login
+System -> DB : Verify Student
+DB --> System : Student Details
+System --> Student : Login Successful
+
+Student -> System : View Exam Details
+System -> DB : Fetch Exam Details
+DB --> System : Exam Information
+System --> Student : Display Exams
+
+Student -> System : Select Subjects
+System -> DB : Check Eligibility
+DB --> System : Eligibility Status
+
+alt Eligible
+  System --> Student : Registration Details
+  Student -> System : Confirm Registration
+  System -> Payment : Process Exam Fee
+  Payment --> System : Payment Status
+
+  alt Payment Successful
+    System -> DB : Save Registration
+    System -> DB : Update Payment Status
+    System --> Student : Registration Confirmed
+    Student -> System : Request Hall Ticket
+    System -> DB : Fetch Registration
+    DB --> System : Registration Details
+    System --> Student : Hall Ticket
+  else Payment Failed
+    System --> Student : Payment Failed
+  end
+
+else Not Eligible
+  System --> Student : Registration Rejected
+end
+
+@enduml
