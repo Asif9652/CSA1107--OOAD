@@ -1,0 +1,37 @@
+
+@startuml
+title Book Bank Registration System - Sequence Diagram
+autonumber
+
+actor Student
+participant "Book Bank Registration System" as BRS
+participant "Book Bank Administrator" as Admin
+database "Book Database" as DB
+
+Student -> BRS : Submit student registration
+BRS -> Admin : Request student verification
+Admin -> BRS : Confirm student details
+
+alt Student details valid
+  BRS -> DB : Store student details
+  DB --> BRS : Registration successful
+
+  Student -> BRS : Request book
+  BRS -> DB : Check book availability
+  DB --> BRS : Return book availability
+
+  alt Book available
+    BRS -> Admin : Request book approval
+    Admin -> BRS : Approve book request
+    BRS -> DB : Update book stock
+    DB --> BRS : Confirm stock update
+    BRS -> Student : Notify book issued
+  else Book unavailable
+    BRS -> Student : Notify book unavailable
+  end
+
+else Student details invalid
+  BRS -> Student : Request correction
+end
+
+@enduml
