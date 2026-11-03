@@ -1,0 +1,51 @@
+
+@startuml
+
+class Student {
+  studentId : int
+  name : String
+  email : String
+  department : String
+  semester : int
+  login()
+  registerExam()
+  selectSubjects()
+}
+
+class Exam {
+  examId : int
+  examName : String
+  examDate : Date
+  semester : int
+  viewExamDetails()
+}
+
+class ExamRegistration {
+  registrationId : int
+  registrationDate : Date
+  status : String
+  register()
+  cancelRegistration()
+}
+
+class Payment {
+  paymentId : int
+  amount : double
+  paymentStatus : String
+  makePayment()
+  verifyPayment()
+}
+
+class ExamAdministrator {
+  adminId : int
+  name : String
+  manageExam()
+  verifyRegistration()
+}
+
+Student "1" -- "0..*" ExamRegistration
+Exam "1" -- "0..*" ExamRegistration
+ExamRegistration "1" -- "1" Payment
+ExamAdministrator --> Exam : manages
+
+@enduml
