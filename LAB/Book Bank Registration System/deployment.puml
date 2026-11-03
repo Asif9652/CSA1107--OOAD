@@ -1,0 +1,28 @@
+
+@startuml
+title Book Bank Registration System - Deployment Diagram
+
+node "Student Computer" as Client {
+  artifact "Student Interface" as UI
+}
+
+node "Book Bank Application Server" as Server {
+  artifact "Registration Module" as RM
+  artifact "Book Request Module" as BRM
+  artifact "Book Inventory Module" as BIM
+  artifact "Book Issue and Return Module" as IRM
+}
+
+database "Book Bank Database Server" as DBServer {
+  artifact "Student Records"
+  artifact "Book Records"
+  artifact "Issue and Return Records"
+}
+
+Client --> Server : HTTPS
+RM --> DBServer : Student registration
+BRM --> DBServer : Book requests
+BIM --> DBServer : Availability queries
+IRM --> DBServer : Issue and return updates
+
+@enduml
