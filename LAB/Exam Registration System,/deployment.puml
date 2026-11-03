@@ -1,0 +1,32 @@
+
+@startuml
+
+node "Student Computer" as Student {
+  artifact "Web Browser"
+}
+
+node "Exam Administrator Computer" as Admin {
+  artifact "Admin Browser"
+}
+
+node "Application Server" as Server {
+  artifact "Exam Registration Application"
+  artifact "Registration Module"
+  artifact "Payment Module"
+  artifact "Hall Ticket Module"
+}
+
+database "Database Server" as DB {
+  artifact "Student Database"
+  artifact "Exam Database"
+  artifact "Registration Database"
+}
+
+node "Payment Gateway Server" as Gateway
+
+Student --> Server : HTTPS
+Admin --> Server : HTTPS
+Server --> DB : Database Connection
+Server --> Gateway : Payment Request
+
+@enduml
