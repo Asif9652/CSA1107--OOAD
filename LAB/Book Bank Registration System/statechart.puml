@@ -1,0 +1,41 @@
+
+@startuml
+title Book Bank Registration System - Statechart Diagram
+
+[*] --> RegistrationStarted
+
+state RegistrationStarted
+state DetailsSubmitted
+state Verification
+state Registered
+state BookRequested
+state AvailabilityChecking
+state Approved
+state BookIssued
+state BookReturned
+state Rejected
+state Cancelled
+
+RegistrationStarted --> DetailsSubmitted : Submit details
+DetailsSubmitted --> Verification : Verify student
+
+Verification --> Registered : Details valid
+Verification --> Rejected : Details invalid
+
+Registered --> BookRequested : Request book
+BookRequested --> AvailabilityChecking : Check availability
+
+AvailabilityChecking --> Approved : Book available and eligible
+AvailabilityChecking --> Rejected : Book unavailable or ineligible
+
+Approved --> BookIssued : Issue book
+BookIssued --> BookReturned : Return book
+
+BookRequested --> Cancelled : Cancel request
+Approved --> Cancelled : Cancel request
+
+Rejected --> [*]
+Cancelled --> [*]
+BookReturned --> [*]
+
+@enduml
