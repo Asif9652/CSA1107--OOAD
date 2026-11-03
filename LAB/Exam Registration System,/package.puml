@@ -1,0 +1,41 @@
+
+@startuml
+
+package "Presentation Layer" {
+  class StudentInterface
+  class AdminInterface
+  class LoginPage
+}
+
+package "Business Logic Layer" {
+  class Student
+  class Exam
+  class ExamRegistration
+  class RegistrationService
+  class EligibilityService
+}
+
+package "Payment Layer" {
+  class Payment
+  class PaymentService
+}
+
+package "Hall Ticket Layer" {
+  class HallTicket
+  class HallTicketService
+}
+
+package "Database Layer" {
+  class StudentRepository
+  class ExamRepository
+  class RegistrationRepository
+}
+
+"Presentation Layer" ..> "Business Logic Layer"
+"Business Logic Layer" ..> "Payment Layer"
+"Business Logic Layer" ..> "Hall Ticket Layer"
+"Business Logic Layer" ..> "Database Layer"
+"Payment Layer" ..> "Database Layer"
+"Hall Ticket Layer" ..> "Database Layer"
+
+@enduml
