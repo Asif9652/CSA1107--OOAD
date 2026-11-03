@@ -1,0 +1,30 @@
+
+@startuml
+title Book Bank Registration System - Package Diagram
+top to bottom direction
+
+package "User Interface Layer" as UI {
+  class StudentRegistrationPage
+  class BookRequestPage
+  class BookStatusPage
+  class AdminDashboard
+}
+
+package "Domain Layer" as Domain {
+  class Student
+  class Book
+  class BookRequest
+  class BookBankAdministrator
+}
+
+package "Technical Services Layer" as Technical {
+  class AuthenticationService
+  class DatabaseService
+  class NotificationService
+  class BookInventoryService
+}
+
+UI ..> Domain : Uses
+Domain ..> Technical : Uses
+
+@enduml
