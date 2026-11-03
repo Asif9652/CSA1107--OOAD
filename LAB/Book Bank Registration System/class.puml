@@ -1,0 +1,51 @@
+
+@startuml
+title Book Bank Registration System - Class Diagram
+skinparam classAttributeIconSize 0
+
+class Student {
+  - studentId: int
+  - studentName: String
+  - department: String
+  - email: String
+  - phone: String
+  + register(): void
+  + submitDetails(): void
+  + requestBook(): void
+  + returnBook(): void
+}
+
+class Book {
+  - bookId: int
+  - bookTitle: String
+  - author: String
+  - availableCopies: int
+  + checkAvailability(): boolean
+  + issueBook(): void
+  + returnBook(): void
+}
+
+class BookRequest {
+  - requestId: int
+  - requestDate: String
+  - requestStatus: String
+  + createRequest(): void
+  + approveRequest(): void
+  + cancelRequest(): void
+}
+
+class BookBankAdministrator {
+  - adminId: int
+  - adminName: String
+  + verifyStudent(): boolean
+  + approveRequest(): void
+  + issueBook(): void
+  + updateBookDetails(): void
+}
+
+Student "1" --> "0..*" BookRequest : creates
+BookRequest "0..*" --> "1" Book : requests
+BookBankAdministrator --> BookRequest : manages
+BookBankAdministrator --> Book : manages
+
+@enduml
