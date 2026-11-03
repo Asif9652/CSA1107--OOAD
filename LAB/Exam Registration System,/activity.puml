@@ -1,0 +1,35 @@
+
+@startuml
+
+start
+
+:Student Login;
+
+if (Login Valid?) then (Yes)
+  :View Exam Details;
+  :Select Subjects;
+  :Check Eligibility;
+
+  if (Eligible?) then (Yes)
+    :Submit Exam Registration;
+    :Pay Exam Fee;
+
+    if (Payment Successful?) then (Yes)
+      :Confirm Registration;
+      :Generate Hall Ticket;
+      :Display Hall Ticket;
+    else (No)
+      :Display Payment Failure;
+    endif
+
+  else (No)
+    :Display Eligibility Error;
+  endif
+
+else (No)
+  :Display Login Error;
+endif
+
+stop
+
+@enduml
