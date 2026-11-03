@@ -1,0 +1,30 @@
+
+@startuml
+
+[*] --> Login
+
+Login --> ExamDetails : Login Successful
+Login --> LoginFailed : Invalid Login
+LoginFailed --> Login
+
+ExamDetails --> SubjectSelection
+SubjectSelection --> EligibilityChecking
+
+EligibilityChecking --> Eligible : Eligible
+EligibilityChecking --> Rejected : Not Eligible
+
+Eligible --> RegistrationSubmitted
+RegistrationSubmitted --> PaymentPending
+
+PaymentPending --> PaymentSuccessful : Payment Success
+PaymentPending --> PaymentFailed : Payment Failure
+
+PaymentFailed --> PaymentPending : Retry Payment
+
+PaymentSuccessful --> Registered
+Registered --> HallTicketGenerated
+HallTicketGenerated --> [*]
+
+Rejected --> [*]
+
+@enduml
