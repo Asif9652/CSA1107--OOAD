@@ -1,0 +1,35 @@
+
+@startuml
+left to right direction
+
+actor Student
+actor "Exam Administrator" as Admin
+
+rectangle "Exam Registration System" {
+  usecase "Login" as UC1
+  usecase "View Exam Details" as UC2
+  usecase "Register for Exam" as UC3
+  usecase "Select Subjects" as UC4
+  usecase "Check Eligibility" as UC5
+  usecase "Pay Exam Fee" as UC6
+  usecase "Generate Hall Ticket" as UC7
+  usecase "Manage Exams" as UC8
+  usecase "Verify Registration" as UC9
+}
+
+Student --> UC1
+Student --> UC2
+Student --> UC3
+Student --> UC4
+Student --> UC6
+Student --> UC7
+
+Admin --> UC1
+Admin --> UC8
+Admin --> UC9
+
+UC3 .> UC4 : <<include>>
+UC3 .> UC5 : <<include>>
+UC3 .> UC6 : <<include>>
+
+@enduml
