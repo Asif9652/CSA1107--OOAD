@@ -1,0 +1,27 @@
+
+@startuml
+title Book Bank Registration System - Component Diagram
+left to right direction
+skinparam componentStyle uml2
+
+actor Student
+
+component "Student Interface" as UI
+component "Registration Module" as RM
+component "Book Request Module" as BRM
+component "Book Inventory Module" as BIM
+component "Book Issue and Return Module" as IRM
+
+database "Book Bank Database" as DB
+
+Student --> UI : Uses
+UI --> RM : Student registration
+UI --> BRM : Book request
+RM --> DB : Store student details
+BRM --> BIM : Check availability
+BIM --> DB : Retrieve book details
+BRM --> IRM : Approved request
+IRM --> DB : Update issue and return records
+BIM --> DB : Update stock
+
+@enduml
